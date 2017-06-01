@@ -1,0 +1,20 @@
+Inspiração: Titan Attacks
+
+Condição de vitória: inexistente, 15 fases iniciais que são repetidas
+A cada 5 fases, uma espécie de mini-boss (5, 10, 15, depois do 15, aumentar velocidade/fire rate)
+Condição de derrota: vidas = 0; inicialmente 5
+Condição para obter novas armas: quantidade de pontos, player escolhe
+
+Inimigos: ataque com bala comum ou melee(kamikaze), padrões de movimentos/velocidade diferenciados(as), teleporter
+Obstáculos: vida proporcional à quantiade de inimigos da fase(?)
+Tipos de arma/projéteis: bala comum, bala mais rápida, laser chargeado, self-destruct, míssil trackeavel(?)
+
+Arte: Sprites 2d a serem definidos (protótipo inicial com polígonos), backdrops mudam a cada fase, a serem definidos (pixel city backgrounds)
+Som: Facilmente encontrados em sites como opengameart, etc
+Música: Chiptune upbeat
+Menu inicial: backdrop semelhante ao das fases, "Aperte enter para iniciar"
+
+Loop: Menu inicial -> Fase 1 ->(Pop-up de upgrades)-> Fase 2 -> Fase 3..5 - > Boss - > Repeat 
+
+Reuniões: 01/06, 08/06, 15/06, 22/06, 29/06, (7/06, 14/06, 21/06,2 8/06)
+Objetivo: Até 15/06 ter um protótipo simples jogável de pelo menos uma fase
