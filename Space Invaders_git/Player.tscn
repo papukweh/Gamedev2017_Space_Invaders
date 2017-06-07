@@ -1,12 +1,70 @@
 [gd_scene load_steps=4 format=1]
 
-[ext_resource path="res://Player.gd" type="Script" id=1]
-[ext_resource path="res://Assets/spritesheet.tex" type="Texture" id=2]
+[ext_resource path="res://Assets/spritesheet.tex" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0, -10, 8.66025, 5, -8.66025, 5 )
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends KinematicBody2D
+
+const BULLET = preload(\"res://Bullet.tscn\")
+
+export(int) var SPEED
+
+var velocity = Vector2()
+var delay = null
+var can_shoot = true
+
+func _fixed_process(delta):
+	
+	if(Input.is_action_pressed(\"ui_accept\")):
+		shoot()
+	elif (Input.is_action_pressed(\"ui_left\")):
+		velocity.x = -SPEED
+		velocity.y = 0
+	elif (Input.is_action_pressed(\"ui_right\")):
+		velocity.x =  SPEED
+		velocity.y = 0
+	elif(Input.is_action_pressed(\"ui_up\")):
+		velocity.y = -SPEED
+		velocity.x = 0
+	elif(Input.is_action_pressed(\"ui_down\")):
+		velocity.y = SPEED
+		velocity.x = 0
+
+	else:
+		velocity.x = 0
+		velocity.y = 0
+
+	var motion = velocity * delta
+	move(motion)
+	
+func _ready():
+	set_fixed_process(true)
+	delay = Timer.new()
+	delay.set_wait_time(0.3)
+	delay.set_one_shot(true)
+	delay.connect(\"timeout\", self, \"_on_timer_timeout\")
+	add_child(delay)
+	delay.start()
+
+func _on_timer_timeout():
+	can_shoot = true
+
+func shoot():
+	if(Input.is_action_released(\"ui_left\")):
+		velocity.x = 0
+	if(can_shoot):
+		var bullet = BULLET.instance()
+		bullet.set_pos(self.get_pos() + Vector2(0,-20))
+		get_parent().add_child(bullet)
+		can_shoot = false
+		delay.start()
+"
 
 [node name="Player" type="KinematicBody2D"]
 
@@ -18,12 +76,13 @@ shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 1 )
+script/script = SubResource( 2 )
+SPEED = 500
 
 [node name="Sprite" type="Sprite" parent="."]
 
 transform/scale = Vector2( 4, 4 )
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 vframes = 10
 hframes = 10
 

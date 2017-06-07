@@ -17,6 +17,7 @@ collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 speed = 1
+self_destruct_time = 0.3
 
 [node name="Sprite" type="Sprite" parent="."]
 
