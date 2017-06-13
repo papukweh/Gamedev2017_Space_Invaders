@@ -15,11 +15,11 @@ input/pickable = false
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 2.77978, 0, 0, 2.38361, 0.688141, 11.5481 )
 shapes/0/trigger = false
-collision/layers = 1
-collision/mask = 1
+collision/layers = 2
+collision/mask = 7
 collision/margin = 0.08
 script/script = ExtResource( 1 )
-SPEED = null
+SPEED = 500
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -30,6 +30,7 @@ hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
+visibility/light_mask = 4098
 transform/pos = Vector2( 0.688141, 11.5481 )
 transform/scale = Vector2( 2.77978, 2.38361 )
 shape = SubResource( 1 )

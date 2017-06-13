@@ -10,13 +10,13 @@ extents = Vector2( 10, 10 )
 
 [node name="Enemy_bullet" type="KinematicBody2D"]
 
+visibility/light_mask = 2052
 input/pickable = false
-collision/layers = 1
-collision/mask = 1
+collision/layers = 4
+collision/mask = 3
 collision/margin = 0.08
 script/script = ExtResource( 1 )
 speed = 1
-self_destruct_time = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -31,18 +31,23 @@ frame = 3
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1.95734, 0, 12.4454 )
-shapes/0/trigger = false
+shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
+collision/layers = 4
+collision/mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
+visibility/light_mask = 2052
 transform/pos = Vector2( 0, 12.4454 )
 transform/scale = Vector2( 1, 1.95734 )
 shape = SubResource( 1 )
-trigger = false
+trigger = true
 _update_shape_index = 0
+
+[connection signal="body_enter" from="Area2D" to="." method="_hit"]
 
 

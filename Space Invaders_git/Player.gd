@@ -11,7 +11,9 @@ var position = Vector2(368, 500)
 
 func _fixed_process(delta):
 	var position = self.get_pos()
-	#print(position)
+	if(global.LIVES <= 0):
+		self.queue_free()
+		print("GAME OVER")
 	
 	if(Input.is_action_pressed("ui_accept")):
 		shoot()

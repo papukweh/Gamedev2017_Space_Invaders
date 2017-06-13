@@ -1,11 +1,13 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=5 format=1]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemy.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/sky.tex" type="Texture" id=3]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=4]
 
 [node name="Map" type="YSort"]
 
+transform/pos = Vector2( 0, -1 )
 sort/enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -17,6 +19,18 @@ SPEED = 600
 
 transform/pos = Vector2( 233.826, 38.4142 )
 
+[node name="Enemy1" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 362.22, 33.3791 )
+
+[node name="Enemy3" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 430.193, 83.7298 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 168.37, 73.6597 )
+
 [node name="TextureFrame" type="TextureFrame" parent="."]
 
 rect/scale = Vector2( 2, 2 )
@@ -24,29 +38,17 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -247.0
-margin/top = -63.0
-margin/right = 525.0
-margin/bottom = 706.0
-texture = ExtResource( 3 )
-stretch_mode = 0
-
-[node name="TextureFrame1" type="TextureFrame" parent="."]
-
-rect/scale = Vector2( 2, 2 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -247.0
-margin/top = -63.0
-margin/right = 525.0
-margin/bottom = 706.0
+margin/left = -182.0
+margin/top = -66.0
+margin/right = 590.0
+margin/bottom = 703.0
 texture = ExtResource( 3 )
 stretch_mode = 0
 
 [node name="Enemy 2" parent="." instance=ExtResource( 2 )]
 
 transform/pos = Vector2( 83.8418, 41.7441 )
+
+[node name="GUI" parent="." instance=ExtResource( 4 )]
 
 
