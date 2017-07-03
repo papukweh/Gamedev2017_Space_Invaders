@@ -12,23 +12,19 @@ var position = Vector2(368, 500)
 func _fixed_process(delta):
 	var position = self.get_pos()
 	if(global.LIVES <= 0):
-		self.queue_free()
-		print("GAME OVER")
+		velocity.x = 0
+		velocity.y = 0
+		#self.queue_free()
+		get_tree().change_scene("res://Game_Over.tscn")
 	
-	if(Input.is_action_pressed("ui_accept")):
+	elif(Input.is_action_pressed("ui_select")):
 		shoot()
 	elif (Input.is_action_pressed("ui_left") && position.x > 20):
 		velocity.x = -SPEED
 		velocity.y = 0
-	elif (Input.is_action_pressed("ui_right") && position.x < 620):
+	elif (Input.is_action_pressed("ui_right") && position.x < 730):
 		velocity.x =  SPEED
 		velocity.y = 0
-	elif(Input.is_action_pressed("ui_up") && position.y > 480):
-		velocity.y = -SPEED
-		velocity.x = 0
-	elif(Input.is_action_pressed("ui_down") && position.y < 610):
-		velocity.y = SPEED
-		velocity.x = 0
 
 	else:
 		velocity.x = 0
@@ -54,16 +50,9 @@ func shoot():
 	if (Input.is_action_pressed("ui_left") && position.x > 20):
 		velocity.x = -SPEED
 		velocity.y = 0
-	elif (Input.is_action_pressed("ui_right") && position.x < 620):
+	elif (Input.is_action_pressed("ui_right") && position.x < 730):
 		velocity.x =  SPEED
 		velocity.y = 0
-	elif(Input.is_action_pressed("ui_up") && position.y > 480):
-		velocity.y = -SPEED
-		velocity.x = 0
-	elif(Input.is_action_pressed("ui_down") && position.y < 610):
-		velocity.y = SPEED
-		velocity.x = 0
-
 	else:
 		velocity.x = 0
 		velocity.y = 0

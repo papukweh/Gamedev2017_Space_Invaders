@@ -6,7 +6,7 @@ var delay = null
 func _ready():
 	delay = Timer.new()
 	randomize()
-	delay.set_wait_time(rand_range(5,50))
+	delay.set_wait_time(rand_range(5,35))
 	delay.set_one_shot(true)
 	delay.connect("timeout", self, "shoot")
 	add_child(delay)
@@ -22,6 +22,7 @@ func _fixed_process(delta):
 		move(Vector2(1,0)*speed*delta)
 	elif global.DIR==true:
 		move(Vector2(-1,0)*speed*delta)
+
 func shoot():
 		var bullet = BULLET.instance()
 		bullet.set_pos(self.get_pos() + Vector2(0,20))

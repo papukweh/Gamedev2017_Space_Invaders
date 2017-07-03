@@ -15,8 +15,20 @@ func _fixed_process(delta):
 		dead = true
 
 func _hit( body ):
-	if not dead and body extends preload("res://Enemy.gd"):
-		print("Enemy hit!")
-		body.queue_free()
-		global.POINTS = global.POINTS + 50
+	if not dead:
+		if body extends preload("res://Enemy.gd"):
+			global.POINTS = global.POINTS + 10
+			global.ENEMIES = global.ENEMIES - 1
+			body.queue_free()
+		elif body extends preload("res://Enemy_2.gd"):
+			global.POINTS = global.POINTS + 25
+			global.ENEMIES = global.ENEMIES - 1
+			body.queue_free()
+		elif body extends preload("res://Enemy_3.gd"):
+			global.POINTS = global.POINTS + 50
+			global.ENEMIES = global.ENEMIES - 1
+			body.queue_free()
+		elif body extends preload("res://Enemy_4.gd"):
+			global.POINTS = global.POINTS + 250
+			body.queue_free()
 		dead = true

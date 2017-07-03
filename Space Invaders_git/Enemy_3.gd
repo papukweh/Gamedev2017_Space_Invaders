@@ -6,7 +6,7 @@ var delay = null
 func _ready():
 	delay = Timer.new()
 	randomize()
-	delay.set_wait_time(rand_range(5,50))
+	delay.set_wait_time(rand_range(5,25))
 	delay.set_one_shot(true)
 	delay.connect("timeout", self, "shoot")
 	add_child(delay)
@@ -29,3 +29,4 @@ func shoot():
 		randomize()
 		delay.set_wait_time(rand_range(0.2,2))
 		delay.start()
+

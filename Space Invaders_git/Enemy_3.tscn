@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemy_3.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sprites_space.tex" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -22,14 +22,14 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.5 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 1,
-"values": [ 3, 4 ]
+"values": [ 7, 8 ]
 }
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy_3" type="KinematicBody2D"]
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 2.20528, 0, 0, 2.00737, -0.49861, 2.50206 )
+shapes/0/transform = Matrix32( 2.2901, 0, 0, 2.45974, 0.604034, 0.296772 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -42,15 +42,7 @@ transform/scale = Vector2( 3, 3 )
 texture = ExtResource( 2 )
 vframes = 10
 hframes = 10
-frame = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-transform/pos = Vector2( -0.49861, 2.50206 )
-transform/scale = Vector2( 2.20528, 2.00737 )
-shape = SubResource( 1 )
-trigger = false
-_update_shape_index = 0
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -62,5 +54,13 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = "Move"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( 0.604034, 0.296772 )
+transform/scale = Vector2( 2.2901, 2.45974 )
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
 

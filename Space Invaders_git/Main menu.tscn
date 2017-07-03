@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Main menu.gd" type="Script" id=1]
 [ext_resource path="res://Assets/sky.tex" type="Texture" id=2]
+[ext_resource path="res://Assets/SI_logo.tex" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
 
@@ -20,6 +21,23 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=2]
+
+resource/name = "Logo"
+length = 3.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 3 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 100, -247 ), Vector2( 100, 172 ) ]
+}
+
 [node name="Control" type="Control"]
 
 focus/ignore_mouse = false
@@ -34,15 +52,15 @@ script/script = ExtResource( 1 )
 
 [node name="TextureFrame" type="TextureFrame" parent="."]
 
-rect/scale = Vector2( 2, 2 )
+rect/scale = Vector2( 1.2, 1.95 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = -272.0
-margin/top = -69.0
-margin/right = 368.0
-margin/bottom = 331.0
+margin/left = -14.0
+margin/top = -7.0
+margin/right = 626.0
+margin/bottom = 393.0
 texture = ExtResource( 2 )
 stretch_mode = 0
 
@@ -59,19 +77,59 @@ autoplay = "Flashing_text"
 
 [node name="Label" type="Label" parent="."]
 
-rect/scale = Vector2( 2, 2 )
+rect/scale = Vector2( 3, 3 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 165.0
-margin/top = 548.0
-margin/right = 378.0
-margin/bottom = 600.0
+margin/left = 139.0
+margin/top = 561.0
+margin/right = 352.0
+margin/bottom = 613.0
 custom_colors/font_color = Color( 1, 1, 1, 0.568481 )
 text = "PRESS ENTER TO BEGIN"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="Label 2" type="Label" parent="."]
+
+rect/scale = Vector2( 1.5, 1.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 138.0
+margin/top = 721.0
+margin/right = 449.0
+margin/bottom = 735.0
+text = "SPACE INVADERS DEMO LET'S (TEST) PLAY II 2017"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="TextureFrame 2" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 100.0
+margin/top = 172.0
+margin/right = 636.0
+margin/bottom = 404.0
+texture = ExtResource( 3 )
+stretch_mode = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureFrame 2"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Logo = SubResource( 2 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "Logo"
 
 
