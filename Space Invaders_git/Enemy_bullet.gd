@@ -1,5 +1,5 @@
 extends KinematicBody2D
-const SPEED_FACTOR = 1024
+const SPEED_FACTOR = 500
 export(int) var speed = 1
 var dead = false
 
@@ -15,5 +15,6 @@ func _fixed_process(delta):
 
 func _hit( body ):
 	if not dead and body extends preload("res://Player.gd"):
+		global.HIT = true
 		global.LIVES = global.LIVES - 1
 	dead = true

@@ -12,9 +12,10 @@ var position = Vector2(368, 500)
 func _fixed_process(delta):
 	var position = self.get_pos()
 	if(global.LIVES <= 0):
+		global.LOSS = true
 		velocity.x = 0
 		velocity.y = 0
-		#self.queue_free()
+		get_child(2).play("Explosion5_1")
 		get_tree().change_scene("res://Game_Over.tscn")
 	
 	elif(Input.is_action_pressed("ui_select")):
@@ -57,6 +58,7 @@ func shoot():
 		velocity.x = 0
 		velocity.y = 0
 	if(can_shoot):
+		get_child(2).play("Laser_Shoot4")
 		var bullet = BULLET.instance()
 		bullet.set_pos(self.get_pos() + Vector2(0,-20))
 		get_parent().add_child(bullet)

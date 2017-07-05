@@ -6,8 +6,7 @@ extends KinematicBody2D
 export (int) var speed = 1200
 
 func _ready():
-	# Called every time the node is added to the scene.
-	# Initialization here
+	get_child(3).play("ufo_lowpitch")
 	set_fixed_process(true)
 	
 func _fixed_process(delta):

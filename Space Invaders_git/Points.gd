@@ -1,6 +1,6 @@
 extends Label
 var points = 0
-var counter_f = "POINTS %s"
+var counter_f = "SCORE: %s"
 
 func _ready():
 	self.set_text(counter_f % [points])

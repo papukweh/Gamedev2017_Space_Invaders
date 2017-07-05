@@ -1,8 +1,8 @@
 extends Node2D
-var delay = null
 
 func _ready():
-	set_fixed_process(true)
-
-func _fixed_process(delta):
-	pass
+	global.current_scene = "Game_Over"
+	if global.LIVES> 0 and global.LOSS == false:
+		self.get_child(1).set_text("VICTORY!")
+	else:
+		self.get_child(1).set_text("GAME OVER")

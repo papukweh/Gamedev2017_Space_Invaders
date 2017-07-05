@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const BULLET =  preload("res://Enemy_bullet.tscn")
 var delay = null
+var dead = false
 
 func _ready():
 	delay = Timer.new()
@@ -14,7 +15,9 @@ func _ready():
 	set_fixed_process(true)
 	
 func _fixed_process(delta):
-	var speed = 100/(1.5*global.ENEMIES)
+	var speed = 300/(1.5*global.ENEMIES)
+	if dead == true:
+		move(Vector2(0,1)*400*delta)
 	if global.FLAG==true:
 		self.set_pos(Vector2(self.get_pos().x, self.get_pos().y+32))
 		global.OK = global.OK+1
@@ -30,3 +33,12 @@ func shoot():
 		randomize()
 		delay.set_wait_time(rand_range(0.2,2))
 		delay.start()
+func die():
+	get_child(2).play("dead")
+	dead = true
+	delay.set_wait_time(2)
+	delay.connect("timeout", self, "dead")
+	delay.start()
+
+func dead():
+	self.queue_free()
