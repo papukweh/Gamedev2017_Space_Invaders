@@ -8,10 +8,7 @@ func _fixed_process(delta):
 		global.FLAG = false
 		global.OK = 0
 	var speed = 300/(1.5*global.ENEMIES)
-	if self.get_pos().y >=430:
-		global.LOSS = true
-		get_tree().change_scene("res://Game_Over.tscn")
-	elif self.get_pos().x >=450 or self.get_pos().x<=290:
+	if self.get_pos().x >=450 or self.get_pos().x<=290:
 		global.FLAG=true
 		self.set_pos(Vector2(self.get_pos().x, self.get_pos().y+32))
 		if global.DIR==false:

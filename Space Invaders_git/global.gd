@@ -1,12 +1,34 @@
 extends Node
+
+var savegame = File.new() #file
+var save_path = "user://savegame.save" #place of the file
+var save_data = {"highscore": ["A", 0]} #variable to store data
+const EXIT =  preload("res://Exit.tscn")
+
 var delay = null
 var current_scene = null
 var music = null
 var menu = null
 var sound = null
+var SCORES = read_save()
 var library = SampleLibrary.new()
+var animation = true
+
+func save(high_score):    
+   save_data["highscore"] = high_score #data to save
+   savegame.open(save_path, File.WRITE) #open file to write
+   savegame.store_var(save_data) #store the data
+   savegame.close() # close the file
+
+func read_save():
+   savegame.open(save_path, File.READ) #open the file
+   save_data = savegame.get_var() #get the value
+   savegame.close() #close the file
+   return save_data["highscore"] #return the value
 
 func _ready():
+	if not savegame.file_exists(save_path):
+		create_save()
 	var player_hit = load("res://Assets/Explosion5.smp")
 	var enemy_hit = load("res://Assets/invaderkilled.smp")
 	var death = load("res://Assets/Explosion6.smp")
@@ -31,12 +53,27 @@ func _ready():
 		music.play()
 	set_fixed_process(true)
 	
+func create_save():
+   savegame.open(save_path, File.WRITE)
+   savegame.store_var(save_data)
+   savegame.close()
+	
 func _fixed_process(delta):
+	if(Input.is_action_pressed("ui_cancel")):
+		var exit = EXIT.instance()
+		get_parent().add_child(exit)
+	else:
+		if(Input.is_action_pressed("ui_accept") and current_scene=="High_Scores"):
+			get_tree().change_scene("res://Main menu.tscn")
 		if HIT == true:
 			sound.play("player_hit")
 			HIT = false
 		if LIVES <= 0 and current_scene != "Game_Over":
+			LOSS = true
 			sound.play("death")
+		if ENEMIES <= 0 and current_scene == "Map":
+			LOSS = false
+			get_tree().change_scene("res://Game_Over.tscn")
 		if EHIT == true:
 			sound.play("enemy_hit")
 			EHIT = false
@@ -65,5 +102,5 @@ var DIR = false #false = right, true = left
 var FLAG = false
 var OK = 0
 var TIME = 0
-var LOSS
 var PLAY = false
+var LOSS = false

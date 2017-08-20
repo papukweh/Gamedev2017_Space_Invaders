@@ -15,12 +15,6 @@ func _ready():
 	delay.connect("timeout", self, "_on_timer_timeout")
 	add_child(delay)
 	delay.start()
-	set_fixed_process(true)
 
-func fixed_process(delta):
-	if global.ENEMIES <= 0:
-		global.LOSS = false
-		get_tree().change_scene("res://Game_Over.tscn")
-	
 func _on_timer_timeout():
 	global.TIME = global.TIME +1

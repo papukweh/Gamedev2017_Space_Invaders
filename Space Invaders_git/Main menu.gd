@@ -21,6 +21,8 @@ func _fixed_process(delta):
 		wait()
 	elif(Input.is_action_pressed("credits")):
 			get_tree().change_scene("res://Credits.tscn")
+	elif(Input.is_action_pressed("score")):
+			get_tree().change_scene("res://High_Scores.tscn")
 
 func wait():
 	delay = Timer.new()

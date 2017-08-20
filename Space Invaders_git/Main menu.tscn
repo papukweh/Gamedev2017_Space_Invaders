@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://Main menu.gd" type="Script" id=1]
-[ext_resource path="res://Assets/sky.tex" type="Texture" id=2]
+[ext_resource path="res://TextureFrame.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/emulogic.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://Assets/SI_logo.tex" type="Texture" id=4]
 [ext_resource path="res://Menu_Animation.gd" type="Script" id=5]
@@ -13,24 +13,24 @@ length = 2.0
 loop = true
 step = 0.1
 tracks/0/type = "value"
-tracks/0/path = NodePath("../Label:custom_colors/font_color")
+tracks/0/path = NodePath("Label:custom_colors/font_color")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = {
 "times": FloatArray( 0, 1, 2 ),
 "transitions": FloatArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ Color( 0.0613424, 0.0613424, 0.0613424, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Label:custom_colors/font_color")
+tracks/1/path = NodePath("Label:visibility/visible")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray( 0, 1, 2 ),
-"transitions": FloatArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -50,34 +50,41 @@ tracks/0/keys = {
 "values": [  ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../AnimationPlayer:script/script")
+tracks/1/path = NodePath("TextureFrame 2:rect/pos")
 tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = {
-"times": FloatArray(  ),
-"transitions": FloatArray(  ),
-"update": 1,
-"values": [  ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("TextureFrame 2:rect/pos")
-tracks/2/interp = 1
-tracks/2/imported = false
-tracks/2/keys = {
 "times": FloatArray( 0, 3 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 100, -257 ), Vector2( 100, 197 ) ]
 }
-tracks/3/type = "value"
-tracks/3/path = NodePath("AnimationPlayer 2:script/script")
-tracks/3/interp = 1
-tracks/3/imported = false
-tracks/3/keys = {
-"times": FloatArray( 3 ),
+tracks/2/type = "value"
+tracks/2/path = NodePath("TextureFrame 2:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0 ),
 "transitions": FloatArray( 1 ),
 "update": 1,
-"values": [ ExtResource( 5 ) ]
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "Logo2"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("TextureFrame 2:visibility/visible")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 1,
+"values": [ true ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -109,22 +116,11 @@ margin/right = 41.0
 margin/bottom = 40.0
 script/script = ExtResource( 1 )
 
-[node name="TextureFrame" type="TextureFrame" parent="."]
-
-rect/scale = Vector2( 1.2, 1.95 )
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = -14.0
-margin/top = -4.0
-margin/right = 626.0
-margin/bottom = 396.0
-texture = ExtResource( 2 )
-stretch_mode = 0
+[node name="TextureFrame" parent="." instance=ExtResource( 2 )]
 
 [node name="Label" type="Label" parent="."]
 
+visibility/visible = false
 rect/scale = Vector2( 1.75, 1.75 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -135,7 +131,7 @@ margin/top = 567.0
 margin/right = 403.0
 margin/bottom = 619.0
 custom_fonts/font = ExtResource( 3 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.0613424, 0.0613424, 0.0613424, 1 )
 text = "PRESS ENTER TO BEGIN"
 percent_visible = 1.0
 lines_skipped = 0
@@ -164,10 +160,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 99.0
-margin/top = -258.0
-margin/right = 635.0
-margin/bottom = -26.0
+margin/left = 100.0
+margin/top = 197.0
+margin/right = 636.0
+margin/bottom = 429.0
 texture = ExtResource( 4 )
 stretch_mode = 0
 
@@ -188,10 +184,11 @@ playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/Logo = SubResource( 2 )
+anims/Logo2 = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
-autoplay = "Logo"
+autoplay = ""
 script/script = ExtResource( 5 )
 
 [node name="Label 3" type="Label" parent="."]
@@ -212,17 +209,6 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AnimationPlayer 3" type="AnimationPlayer" parent="."]
-
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/flash = SubResource( 3 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = ""
-
 [node name="AnimationPlayer4" type="AnimationPlayer" parent="."]
 
 playback/process_mode = 1
@@ -233,5 +219,23 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="Label4" type="Label" parent="."]
+
+rect/scale = Vector2( 1, 1.1 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 612.0
+margin/top = 6.0
+margin/right = 804.0
+margin/bottom = 22.0
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "[S]CORES"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
