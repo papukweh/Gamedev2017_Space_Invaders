@@ -7,14 +7,12 @@ func _ready():
 	global.current_scene = "High_Scores"
 	get_child(0).set_title("High Scores")
 	get_child(0).popup()
-	names = "  NAMES\n\n"
-	scores = "SCORES\n\n"
+	scores = "  NAMES \t\t\t\t\t\tSCORES\n\n"
 	global.SCORES.sort()
 	for i in range(2, global.SCORES.size()):
-		names = names + str(i-1)+" "+ global.SCORES[i][0] + "\n"
+		scores = scores + str(i-1)+" "+ global.SCORES[i][0] + "\t\t\t\t\t\t"
 		scores = scores + global.SCORES[i][1] + "\n\n"
-	get_node("WindowDialog/Label").set_text(names)
-	get_node("WindowDialog/Label1").set_text(scores)
+	get_node("WindowDialog/Label").set_bbcode(scores)
 	delay = Timer.new()
 	delay.set_wait_time(1)
 	delay.set_one_shot(true)
