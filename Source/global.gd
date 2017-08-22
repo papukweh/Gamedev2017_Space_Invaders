@@ -1,7 +1,7 @@
 extends Node
 
 var savegame = File.new() #file
-var save_path = "user://savegame.save" #place of the file
+var save_path = "./savegame.save" #place of the file
 var save_data = {"highscore": ["A", 0]} #variable to store data
 const EXIT =  preload("res://Exit.tscn")
 
